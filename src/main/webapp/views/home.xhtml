@@ -109,11 +109,13 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Cerrar</button>
+								data-dismiss="modal"></button>
 							<button type="submit" class="btn btn-primary"
-								jsf:actionListener="#{clienteBean.registrarClientee}">Registrar
-								<f:ajax execute="@form" render=":idFrmCliente:iddataTableCliente idMessagesRegistrarCliente"/>
-								</button>
+								jsf:actionListener="#{clienteBean.registrarClientee}">
+								Registrar
+								<f:ajax execute="@form"
+									render=":idFrmCliente:iddataTableCliente idMessagesRegistrarCliente idFrmRegistrarCliente" />
+							</button>
 						</div>
 					</form>
 				</div>
