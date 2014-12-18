@@ -9,50 +9,54 @@
 	<ui:define name="title">Clientes</ui:define>
 
 	<ui:define name="cuerpo">
+		<div class="row">
+			<div class="col-md-4">
+				<form jsf:id="idFrmOpciones">
 
-		<form jsf:id="idFrmOpciones">
+				<button class="btn btn-default" data-toggle="modal"
+					data-target="#myModal">Registrar Cliente</button>
 
-			<button class="btn btn-default" data-toggle="modal"
-				data-target="#myModal">Registrar Cliente</button>
+				<button class="btn btn-default"
+					jsf:actionListener="#{clienteBean.listarClientes}">
+					Listar Clientes
+					<f:ajax render=":idFrmCliente:iddataTableCliente" />
 
-			<button class="btn btn-default"
-				jsf:actionListener="#{clienteBean.listarClientes}">
-				Listar Clientes
-				<f:ajax render=":idFrmCliente:iddataTableCliente" />
+				</button>
 
-			</button>
+				</form>
+			</div>
+			<div class="col-md-8">
+				<form jsf:id="idFrmCliente">
+					<p:dataTable var="cliente" id="iddataTableCliente" paginator="true"
+						rows="8" value="#{clienteBean.clientes}">
 
-		</form>
+						<p:column headerText="Código">
+							<h:outputText value="#{cliente.coCliente}" />
+						</p:column>
 
-		<div>
+						<p:column headerText="Nombre">
+							<h:outputText value="#{cliente.deNombre}" />
+						</p:column>
 
-			<form jsf:id="idFrmCliente">
-				<p:dataTable var="cliente" id="iddataTableCliente" paginator="true"
-					rows="8" value="#{clienteBean.clientes}">
+						<p:column headerText="Apellido Paterno">
+							<h:outputText value=" #{cliente.deApellidoPaterno}" />
+						</p:column>
 
-					<p:column headerText="Código">
-						<h:outputText value="#{cliente.coCliente}" />
-					</p:column>
+						<p:column headerText="Apellido Materno">
+							<h:outputText value="#{cliente.deApellidoMaterno}" />
+						</p:column>
 
-					<p:column headerText="Nombre">
-						<h:outputText value="#{cliente.deNombre}" />
-					</p:column>
+						<p:column headerText="Estado">
+							<h:outputText value="#{cliente.coEstado}" />
+						</p:column>
 
-					<p:column headerText="Apellido Paterno">
-						<h:outputText value=" #{cliente.deApellidoPaterno}" />
-					</p:column>
+					</p:dataTable>
+				</form>
+			</div>
 
-					<p:column headerText="Apellido Materno">
-						<h:outputText value="#{cliente.deApellidoMaterno}" />
-					</p:column>
 
-					<p:column headerText="Estado">
-						<h:outputText value="#{cliente.coEstado}" />
-					</p:column>
-
-				</p:dataTable>
-			</form>
 		</div>
+
 
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
