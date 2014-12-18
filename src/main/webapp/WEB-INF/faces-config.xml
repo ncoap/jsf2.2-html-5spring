@@ -15,7 +15,7 @@
 		</resource-bundle>
 
 		<!-- validaciones carga el properties de los nensajes -->
-		<message-bundle>tienda.sistemas.b13.mensajes.base</message-bundle>
+		<message-bundle>sistemasb13.tienda.mensajes.base</message-bundle>
 
 		<!-- internacionalizacion -->
 		<locale-config>
@@ -26,7 +26,7 @@
 		</locale-config>
 
 		<resource-bundle>
-			<base-name>tienda.sistemas.b13.i18n.base</base-name>
+			<base-name>sistemasb13.tienda.i18n.base</base-name>
 			<var>msg</var>
 		</resource-bundle>
 
