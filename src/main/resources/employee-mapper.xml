@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="makky.mybatis.tutorial.IUserMgmtDao">
+
+    <cache flushInterval="60000"></cache>
+
+    <select id="getCountForDepartment" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(1) from department
+    </select>
+
+    <select id="isUserExistsForDepartment" parameterType="map"
+            resultType="boolean">
+        select count(1) from user_detail u , department d
+        where
+        u.department_id=d.id
+        and username =#{username}
+        and
+        department_name=#{deptName}
+    </select>
+
+    <select id="getUserDetail" parameterType="map" resultType="UserDetDepartment">
+        select
+        username as username ,
+        date_added as date_added ,
+        age as age
+        from
+        user_detail u ,
+        department d
+        where
+        u.department_id=d.id
+        and username like #{username}
+        and department_name like #{deptName}
+    </select>
+
+    <insert id="addDepartment" parameterType="makky.mybatis.tutorial.domain.Department"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into
+        department (department_name) values (#{department_name})
+    </insert>
+
+    <delete id="deleteDepartmentByName" parameterType="java.lang.String">
+        delete from department where department_name=#{name}
+    </delete>
+
+    <update id="updateDepartmentNameById" parameterType="map">
+        update department
+        set department_name = #{name}
+        where id = #{id}
+    </update>
+
+</mapper>

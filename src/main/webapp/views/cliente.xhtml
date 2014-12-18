@@ -1,0 +1,218 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/principalTemplate.xhtml">
+
+	<ui:define name="north">
+
+		<p:outputLabel
+			value="Bienvenido Usuario: #{usuarioBean.usuario.deLogin}"></p:outputLabel>
+
+	</ui:define>
+
+
+	<ui:define name="center">
+
+		<h:panelGrid columns="1">
+			<h:form id="idFrmBtnClienteNuevo">
+				<p:commandButton value="Nuevo Cliente" icon="ui-icon-document"
+					actionListener="#{clienteBean.registrarCliente}"
+					update=":idFrmDialogRegistrarCliente" />
+				<p:commandButton value="Cargar Clientes" icon="ui-icon-document"
+					actionListener="#{clienteBean.listarClientes}"
+					update=":idFrmClientes:iddataTableCliente" />
+			</h:form>
+
+			<h:form id="idFrmClientes">
+				<p:dataTable var="cliente" id="iddataTableCliente"
+					value="#{clienteBean.clientes}" paginator="true" rows="5"
+					lazy="true"
+					paginatorTemplate="{FirstPageLink} 
+				{PreviousPageLink} {PageLinks} {NextPageLink} 
+				{LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" filterEvent="enter"
+					emptyMessage="No existen Clientes...">
+
+					<p:column headerText="Código">
+						<h:outputText value="#{cliente.coCliente}" />
+					</p:column>
+
+					<p:column headerText="Nombre">
+						<h:outputText value="#{cliente.deNombre}" />
+					</p:column>
+
+					<p:column headerText="Apellido Paterno">
+						<h:outputText value=" #{cliente.deApellidoPaterno}" />
+					</p:column>
+
+					<p:column headerText="Apellido Materno">
+						<h:outputText value="#{cliente.deApellidoMaterno}" />
+					</p:column>
+
+					<p:column headerText="Registro">
+						<h:outputText value=" #{cliente.feRegistra}"
+							converter="dateConverter" />
+					</p:column>
+
+					<p:column headerText="Foto">
+						<p:graphicImage url="#{cliente.dirFoto}" height="50px"
+							width="50px"></p:graphicImage>
+					</p:column>
+
+					<p:column headerText="Estado">
+						<h:outputText value="#{cliente.coEstado}" />
+					</p:column>
+
+					<p:column headerText="Opciones" styleClass="OpcionesCliente">
+
+						<p:commandButton icon="ui-icon-pencil" title="Editar Cliente"
+							actionListener="#{clienteBean.cargarCliente}"
+							update=":idFrmDialogEditarCliente">
+							<f:attribute name="clienteSelect" value="#{cliente}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-document" title="Ver Cliente">
+							<f:attribute name="clienteSelect" value="#{cliente}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+
+		</h:panelGrid>
+
+		<!-- REGISTRAR CLIENTE-->
+		<p:dialog header="Registrar Nuevo Cliente"
+			widgetVar="wvDialogRegistrarCliente" id="idDialogRegistrarCliente"
+			resizable="false" width="40%" height="320" closeOnEscape="true">
+
+			<h:form id="idFrmDialogRegistrarCliente">
+				<p:messages id="idMessagesRegistrarCliente" />
+				<p:panelGrid columns="2" styleClass="AlineacionIzquierda Ancho100">
+
+					<h:outputLabel value="Codigo Cliente" />
+					<p:inputText value="#{clienteBean.cliente.coCliente}"
+						required="true">
+						<f:validateLength minimum="8" maximum="8" />
+					</p:inputText>
+
+					<h:outputLabel value="Nombree" />
+					<p:inputText value="#{clienteBean.cliente.deNombre}"
+						required="true" styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Apellido Paterno" />
+					<p:inputText value="#{clienteBean.cliente.deApellidoPaterno}"
+						styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Apellido Materno" />
+					<p:inputText value="#{clienteBean.cliente.deApellidoMaterno}"
+						styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Fecha Registro" />
+					<p:calendar value="#{clienteBean.cliente.feRegistra}" locale="es"
+						pattern="dd/MM/yyyy" showOn="button">
+					</p:calendar>
+
+					<h:outputLabel value="URL Imagen" />
+					<p:inputText value="#{clienteBean.cliente.dirFoto}" type="url"
+						styleClass="Ancho100" required="true">
+					</p:inputText>
+
+					<h:outputLabel value="Estado" />
+					<p:selectOneMenu value="#{clienteBean.cliente.coEstado}">
+						<f:selectItem itemValue="01" itemLabel="HABILITADO" />
+						<f:selectItem itemValue="02" itemLabel="DESHABILITADO" />
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Usuario" />
+					<p:selectOneMenu value="#{clienteBean.cliente.coUsuario}"
+						required="true">
+						<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.usuarios}" var="usuario"
+							itemLabel="#{usuario.deLogin}" itemValue="#{usuario.coUsuario}" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="Registrar"
+						actionListener="#{clienteBean.registrarClientee}"
+						update="idMessagesRegistrarCliente :idFrmClientes">
+					</p:commandButton>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<!-- EDITAR CLIENTE-->
+		<p:dialog header="Editar Cliente" widgetVar="wvDialogEditarCliente"
+			id="idDialogEditarCliente" resizable="false" width="40%" height="300"
+			closeOnEscape="true">
+
+			<h:form id="idFrmDialogEditarCliente">
+				<p:messages id="idDialogMessages" />
+				<p:panelGrid columns="2" styleClass="AlineacionIzquierda Ancho100">
+
+					<h:outputLabel value="Codigo Cliente" />
+					<p:inputText value="#{clienteBean.cliente.coCliente}"
+						disabled="true" required="true">
+						<f:validateLength minimum="8" maximum="8" />
+					</p:inputText>
+
+					<h:outputLabel value="Nombree" />
+					<p:inputText value="#{clienteBean.cliente.deNombre}"
+						required="true" styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Apellido Paterno" />
+					<p:inputText value="#{clienteBean.cliente.deApellidoPaterno}"
+						styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Apellido Materno" />
+					<p:inputText value="#{clienteBean.cliente.deApellidoMaterno}"
+						styleClass="Ancho100">
+					</p:inputText>
+
+					<h:outputLabel value="Fecha Registro" />
+					<p:calendar value="#{clienteBean.cliente.feRegistra}"
+						showOn="button" required="true">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:calendar>
+
+					<h:outputLabel value="Estado" />
+					<p:selectOneMenu value="#{clienteBean.cliente.coEstado}">
+						<f:selectItem itemValue="01" itemLabel="HABILITADO" />
+						<f:selectItem itemValue="02" itemLabel="DESHABILITADO" />
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Usuario" />
+					<p:selectOneMenu value="#{clienteBean.cliente.coUsuario}"
+						required="true">
+						<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.usuarios}" var="usuario"
+							itemLabel="#{usuario.deLogin}" itemValue="#{usuario.coUsuario}" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="Actualizar"
+						actionListener="#{clienteBean.actualizarCliente}"
+						update="idDialogMessages :idFrmClientes"></p:commandButton>
+					<p:commandButton value="Cerrar"
+						onclick="PF('wvDialogEditarCliente').hide();"></p:commandButton>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+
+	<ui:define name="south">
+
+	</ui:define>
+
+
+</ui:composition>

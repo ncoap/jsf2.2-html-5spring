@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<!--Con esta linea le dices a JSF QUE spring se encargará del manejo de 
+		los managedBean -->
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+
+		<resource-bundle>
+			<base-name>build</base-name>
+			<var>build</var>
+		</resource-bundle>
+
+		<!-- validaciones carga el properties de los nensajes -->
+		<message-bundle>tienda.sistemas.b13.mensajes.base</message-bundle>
+
+		<!-- internacionalizacion -->
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>es_ES</supported-locale>
+			<supported-locale>en_US</supported-locale>
+		</locale-config>
+
+		<resource-bundle>
+			<base-name>tienda.sistemas.b13.i18n.base</base-name>
+			<var>msg</var>
+		</resource-bundle>
+
+	</application>
+
+</faces-config>

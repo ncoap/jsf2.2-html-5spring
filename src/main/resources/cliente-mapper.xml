@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="sistemasb13.tienda.daoibatis.ICliente">
+
+	<cache flushInterval="60000"></cache>
+
+	<select id="getClientes" resultType="Cliente">
+		SELECT 
+		CO_CLIENTE as coCliente,
+		DE_NOMBRE as deNombre,
+		DE_APELLIDO_PATERNO as deApellidoPaterno,
+		DE_APELLIDO_MATERNO as deApellidoMaterno,
+		FE_REGISTRA as feRegistra,
+		DIR_FOTO as dirFoto,
+		CO_ESTADO as coEstado,
+		CO_USUARIO as coUsuario
+		FROM CLIENTE;
+	</select>
+
+	<insert id="addClient" parameterType="Cliente">
+		INSERT INTO CLIENTE VALUES (
+		#{coCliente},#{deNombre},#{deApellidoPaterno},
+		#{deApellidoMaterno},#{feRegistra},#{dirFoto},#{coEstado},#{coUsuario});
+	</insert>
+
+	<update id="updateClient" parameterType="Cliente">
+		UPDATE CLIENTE SET 
+		DE_NOMBRE = #{deNombre},
+		DE_APELLIDO_PATERNO = #{deApellidoPaterno},
+		DE_APELLIDO_MATERNO = #{deApellidoMaterno},
+		FE_REGISTRA = #{feRegistra},
+		CO_ESTADO = #{coEstado},
+		CO_USUARIO = #{coUsuario}
+		WHERE CO_CLIENTE = #{coCliente};
+	</update>
+
+</mapper>
