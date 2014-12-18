@@ -16,33 +16,46 @@
 				data-target="#myModal">Registrar Cliente</button>
 
 			<button class="btn btn-default"
-				jsf:actionListener="#{clienteBean.listarClientes}">Listar Clientes
-				<f:ajax render=":idTableClientes" />
+				jsf:actionListener="#{clienteBean.listarClientes}">
+				Listar Clientes
+				<f:ajax render=":idFrmCliente:iddataTableCliente" />
 
 			</button>
 
 		</form>
 
-		<table class="table table-striped table-hover" jsf:id="idTableClientes">
-			<thead>
-				<tr>
-					<th>Codigo</th>
-					<th>Nombre</th>
-					<th>Apellido Paterno</th>
-					<th>Apellido Materno</th>
-				</tr>
-			</thead>
-			<tbody>
-				<ui:repeat var="cliente" value="#{clienteBean.clientes}">
-					<tr>
-						<td>#{cliente.coCliente}</td>
-						<td>#{cliente.deNombre}</td>
-						<td>#{cliente.deApellidoPaterno}</td>
-						<td>#{cliente.deApellidoMaterno}</td>
-					</tr>
-				</ui:repeat>
-			</tbody>
-		</table>
+		<div>
+
+			<h:panelGrid columns="1">
+
+				<h:form id="idFrmClientes">
+					<p:dataTable var="cliente" id="iddataTableCliente" paginator="true" rows="8"
+						value="#{clienteBean.clientes}">
+
+						<p:column headerText="Código">
+							<h:outputText value="#{cliente.coCliente}" />
+						</p:column>
+
+						<p:column headerText="Nombre">
+							<h:outputText value="#{cliente.deNombre}" />
+						</p:column>
+
+						<p:column headerText="Apellido Paterno">
+							<h:outputText value=" #{cliente.deApellidoPaterno}" />
+						</p:column>
+
+						<p:column headerText="Apellido Materno">
+							<h:outputText value="#{cliente.deApellidoMaterno}" />
+						</p:column>
+
+						<p:column headerText="Estado">
+							<h:outputText value="#{cliente.coEstado}" />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</h:panelGrid>
+		</div>
 
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
