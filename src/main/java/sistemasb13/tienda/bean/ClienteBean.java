@@ -41,6 +41,7 @@ public class ClienteBean implements Serializable {
 	public ClienteBean() {
 		log.debug("En el constructor del ClienteBean");
 		cliente = new Cliente();
+		cliente.setDeNombre("nelson coqchi apaza");
 		clientes = new ArrayList<Cliente>();
 	}
 
@@ -119,6 +120,7 @@ public class ClienteBean implements Serializable {
 		// UsuarioBean usuarioBean = (UsuarioBean) ctx.getBean("usuarioBean");
 		// cliente.setCoUsuario(usuarioBean.getUsuario().getCoUsuario());
 		log.debug("Registrando Cliente: " + cliente);
+		cliente.setCoUsuario("46435523");
 		String mensaje = clienteService.registrarCliente(cliente);
 		if (mensaje.equals("OK")) {
 			FacesContext.getCurrentInstance().addMessage(

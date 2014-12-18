@@ -26,35 +26,32 @@
 
 		<div>
 
-			<h:panelGrid columns="1">
+			<form jsf:id="idFrmCliente">
+				<p:dataTable var="cliente" id="iddataTableCliente" paginator="true"
+					rows="8" value="#{clienteBean.clientes}">
 
-				<h:form id="idFrmClientes">
-					<p:dataTable var="cliente" id="iddataTableCliente" paginator="true" rows="8"
-						value="#{clienteBean.clientes}">
+					<p:column headerText="Código">
+						<h:outputText value="#{cliente.coCliente}" />
+					</p:column>
 
-						<p:column headerText="Código">
-							<h:outputText value="#{cliente.coCliente}" />
-						</p:column>
+					<p:column headerText="Nombre">
+						<h:outputText value="#{cliente.deNombre}" />
+					</p:column>
 
-						<p:column headerText="Nombre">
-							<h:outputText value="#{cliente.deNombre}" />
-						</p:column>
+					<p:column headerText="Apellido Paterno">
+						<h:outputText value=" #{cliente.deApellidoPaterno}" />
+					</p:column>
 
-						<p:column headerText="Apellido Paterno">
-							<h:outputText value=" #{cliente.deApellidoPaterno}" />
-						</p:column>
+					<p:column headerText="Apellido Materno">
+						<h:outputText value="#{cliente.deApellidoMaterno}" />
+					</p:column>
 
-						<p:column headerText="Apellido Materno">
-							<h:outputText value="#{cliente.deApellidoMaterno}" />
-						</p:column>
+					<p:column headerText="Estado">
+						<h:outputText value="#{cliente.coEstado}" />
+					</p:column>
 
-						<p:column headerText="Estado">
-							<h:outputText value="#{cliente.coEstado}" />
-						</p:column>
-
-					</p:dataTable>
-				</h:form>
-			</h:panelGrid>
+				</p:dataTable>
+			</form>
 		</div>
 
 		<!-- Modal -->
@@ -66,14 +63,59 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+						<h4 class="modal-title" id="myModalLabel">Registro</h4>
 					</div>
-					<div class="modal-body">...</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
-					</div>
+					<form class="form-horizontal" jsf:id="idFrmRegistrarCliente">
+						<div class="modal-body">
+
+							<p:messages id="idMessagesRegistrarCliente" />
+							<fieldset>
+								<legend>Registro de Clientes</legend>
+								<div class="form-group">
+									<label for="inputCodigo" class="col-lg-2 control-label">Codigo</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="inputCodigo"
+											placeholder="Codigo"
+											jsf:value="#{clienteBean.cliente.coCliente}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputNombre" class="col-lg-2 control-label">Nombre</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="inputNombre"
+											placeholder="Nombre"
+											jsf:value="#{clienteBean.cliente.deNombre}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPaterno" class="col-lg-2 control-label">Paterno</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="inputPaterno"
+											placeholder="Paterno"
+											jsf:value="#{clienteBean.cliente.deApellidoPaterno}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputMaterno" class="col-lg-2 control-label">Materno</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="inputMaterno"
+											placeholder="Materno"
+											jsf:value="#{clienteBean.cliente.deApellidoMaterno}" />
+									</div>
+								</div>
+
+							</fieldset>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cerrar</button>
+							<button type="submit" class="btn btn-primary"
+								jsf:actionListener="#{clienteBean.registrarClientee}">Registrar
+								<f:ajax execute="@form" render=":idFrmCliente:iddataTableCliente idMessagesRegistrarCliente"/>
+								</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
