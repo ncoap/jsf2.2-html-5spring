@@ -2,26 +2,23 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	template="/templates/homeTemplate.xhtml">
+	template="/templates/homeTemplate2.xhtml">
 
 	<ui:define name="title">Clientes</ui:define>
 
 	<ui:define name="cuerpo">
-		<div class="row">
-			<div class="col-md-4">
-				<form jsf:id="idFrmOpciones">
-					<button class="btn btn-default"
-						jsf:actionListener="#{clienteBean.listarClientes}">
-						Listar Clientes
-						<f:ajax render=":idFrmCliente:iddataTableCliente" />
-					</button>
 
-				</form>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Panel primary</h3>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="panel-body">
+				<ui:repeat var="usuario" value="#{usuarioBean.usuarios}">
+					<label class="label label-info"> #{usuario.deLogin} </label>
+				</ui:repeat>
 
+			</div>
 		</div>
-
 
 		<button class="btn btn-default" data-toggle="modal"
 			data-target="#myModal">Registrar Cliente</button>

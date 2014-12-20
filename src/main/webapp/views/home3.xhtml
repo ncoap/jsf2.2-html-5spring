@@ -9,9 +9,13 @@
 	<ui:define name="title">Clientes</ui:define>
 
 	<ui:define name="cuerpo">
-
-		<button class="btn btn-default" data-toggle="modal"
-			data-target="#myModal">Registrar Clienton</button>
+		<form jsf:id="frmButtonGroup">
+			<button class="btn btn-default" data-toggle="modal"
+			data-target="#myModal" jsf:actionListener="#{usuarioBean.listarUsuarios}">Registrar Clientes
+				<f:ajax render=":idFrmModal"/>
+			</button>
+		
+		</form>
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -26,24 +30,16 @@
 
 
 					<div class="modal-body">
-						<form class="form-horizontal">
+						<form class="form-horizontal" jsf:id="idFrmModal">
 							<fieldset>
 								<div class="form-group">
 									<label for="select" class="col-lg-2 control-label">Selects</label>
 									<div class="col-lg-10">
 										<select id="first-disabled" class="selectpicker"
 											data-hide-disabled="true" data-live-search="true">
-											<optgroup disabled="disabled" label="disabled">
-												<option>Hidden</option>
-											</optgroup>
-											<optgroup label="Fruit">
-												<option>Apple</option>
-												<option>Orange</option>
-											</optgroup>
-											<optgroup label="Vegetable">
-												<option>Corn</option>
-												<option>Carrot</option>
-											</optgroup>
+											<ui:repeat var="usuario" value="#{usuarioBean.usuarios}">
+												<option jsf:value="#{usuario.deLogin}">#{usuario.deLogin}</option>
+											</ui:repeat> 
 										</select>
 									</div>
 								</div>
@@ -59,27 +55,6 @@
 			</div>
 		</div>
 		<!-- 			fin Modal -->
-
-		<script>
-			$(document).ready(
-					function() {
-						var mySelect = $('#first-disabled2');
-						$('#special').on(
-								'click',
-								function() {
-									mySelect.find('option:selected').attr(
-											'disabled', 'disabled');
-									mySelect.selectpicker('refresh');
-								});
-						var $basic2 = $('#basic2').selectpicker({
-							liveSearch : true,
-							maxOptions : 1
-						});
-					});
-		</script>
-
-
-
 
 	</ui:define>
 
