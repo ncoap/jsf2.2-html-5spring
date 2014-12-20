@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title><ui:insert name="title">Aqui va el titulo</ui:insert></title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="north" size="100" resizable="true"
+				closable="true" collapsible="true">
+                    <ui:insert name="north">Aqui va el cuerpo</ui:insert>
+                </p:layoutUnit>
+
+			<p:layoutUnit position="south" size="100" closable="true"
+				collapsible="true">
+				<ui:insert name="south">Aqui va el cuerpo</ui:insert>
+                    
+                </p:layoutUnit>
+
+			<p:layoutUnit position="west" size="175" header="Left"
+				collapsible="true">
+				<p:menu>
+					<p:submenu label="Resources">
+						<p:menuitem value="Demo"
+							url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+						<p:menuitem value="Documentation"
+							url="http://www.primefaces.org/documentation.html" />
+						<p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+						<p:menuitem value="Themes"
+							url="http://www.primefaces.org/themes.html" />
+
+					</p:submenu>
+
+				</p:menu>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<ui:insert name="center">Aqui va el cuerpo</ui:insert>
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</h:body>
+
+</f:view>
+</html>
+
