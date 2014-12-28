@@ -33,8 +33,6 @@ public class UsuarioDaoImpl implements UsuarioDao, Serializable {
 	// acceso para JDBC CON spring jdbc
 	private static final Logger log = Logger.getLogger(UsuarioDaoImpl.class);
 
-	ApplicationContext ctx = FacesContextUtils
-			.getWebApplicationContext(FacesContext.getCurrentInstance());
 
 	private JdbcTemplate jdbcTemplate;
 

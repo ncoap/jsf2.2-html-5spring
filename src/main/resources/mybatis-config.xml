@@ -21,10 +21,12 @@
 
     <typeAliases>
         <typeAlias type="sistemasb13.tienda.domain.Cliente" alias="Cliente"></typeAlias>
+        <typeAlias type="sistemasb13.tienda.domain.ubigeo.Departamento" alias="Departamento"></typeAlias>
     </typeAliases>
 
     <mappers>
         <mapper resource="cliente-mapper.xml" />
+        <mapper resource="ubigeo-mapper.xml" />
     </mappers>
 	
 </configuration>

@@ -122,7 +122,7 @@ DROP TABLE IF EXISTS MONEDA;
 CREATE TABLE MONEDA (
    CO_MONEDA  CHAR(2)     NOT NULL,
    NO_MONEDA  VARCHAR(20) null,
-   NU_TIPOCAMBIO DOUBLE
+   NU_TIPOCAMBIO DOUBLE,
   PRIMARY KEY (CO_MONEDA)
 )
 ENGINE = InnoDB
@@ -131,4 +131,37 @@ DEFAULT CHARACTER SET = utf8;
 INSERT INTO MONEDA VALUES
 ('01','NUEVOS SOLES',1),
 ('02','DOLARES AMERICANOS',2.5);
+
+/*==============================================================*/
+/* Table: DEPARTAMENTO                                          */
+/*==============================================================*/
+create table DEPARTAMENTO (
+   CO_DEPARTAMENTO      char(2)       not null,
+   NO_DEPARTAMENTO      varchar(255) null,
+   PRIMARY KEY (CO_DEPARTAMENTO)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+/*==============================================================*/
+/* Table: PROVINCIA                                             */
+/*==============================================================*/
+create table PROVINCIA (
+   CO_PROVINCIA         char(2)          not null,
+   CO_DEPARTAMENTO      char(2)          not null,
+   NO_PROVINCIA         varchar(255)    null,
+   PRIMARY KEY (CO_PROVINCIA, CO_DEPARTAMENTO)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+/*==============================================================*/
+/* Table: DISTRITO                                              */
+/*==============================================================*/
+create table DISTRITO (
+   CO_DISTRITO          char(2)         not null,
+   CO_PROVINCIA         char(2)         not null,
+   CO_DEPARTAMENTO      char(2)         not null,
+   NO_DISTRITO          varchar(255)    null,
+   PRIMARY KEY (CO_DISTRITO, CO_PROVINCIA, CO_DEPARTAMENTO)
+)
 

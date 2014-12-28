@@ -11,7 +11,9 @@
     http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="sistemasb13.tienda" />
+	<context:component-scan base-package="sistemasb13.tienda.services" />
+	<context:component-scan base-package="sistemasb13.tienda.daoibatis" />
+	<context:component-scan base-package="sistemasb13.tienda.dao" />
 
 	<mybatis-spring:scan base-package="sistemasb13.tienda.daoibatis" />
 	<!-- Para el scaneo del paquete y el chequeo de las anotacion usadas -->
@@ -22,7 +24,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/b13" />
 		<property name="username" value="root" />
-		<property name="password" value="10200092" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
