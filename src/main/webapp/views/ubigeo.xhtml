@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/principalTemplate.xhtml">
 
-	<ui:define name="title">List Cliente Prime</ui:define>
+	<ui:define name="title">Ubigeo</ui:define>
 
 	<ui:define name="north">
 		<p:outputLabel
@@ -14,25 +14,31 @@
 
 
 	<ui:define name="center">
-	
-	    <h:form>
-			<p:commandButton value="OOO" actionListener="#{ubigeoBean.getAllDepartments}" 
-			update=":idFrmUbigeo:idDepartamento"></p:commandButton>
-			
-		</h:form>
-		
+
 		<h:form id="idFrmUbigeo">
 			<p:messages id="idMessages" />
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
 				<p:outputLabel for="idDepartamento" value="Departamento:" />
-				<p:selectOneMenu id="idDepartamento">
-					<f:selectItems value="#{ubigeoBean.departamentos}" var="departamento"
-					itemValue="#{departamento.coDepartamento}" itemLabel="#{departamento.noDepartamento}"/>
+
+				<p:selectOneMenu id="idDepartamento" value="#{ubigeoBean.departamento.coDepartamento}" required="true">
+					<p:ajax listener="#{ubigeoBean.getProvinciasByIdDepartment}" update="idProvincia"/>
+					<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-" noSelectionOption="true" />
+					<f:selectItems value="#{ubigeoBean.departamentos}"
+						var="departamento" itemValue="#{departamento.coDepartamento}"
+						itemLabel="#{departamento.noDepartamento}">
+					</f:selectItems>
+
+				</p:selectOneMenu>
+
+				<p:outputLabel for="idProvincia" value="Provincia" />
+				<p:selectOneMenu id="idProvincia">
+					<f:selectItems value="#{ubigeoBean.provincias}" />
 				</p:selectOneMenu>
 
 			</h:panelGrid>
-			
+
 		</h:form>
 
 	</ui:define>

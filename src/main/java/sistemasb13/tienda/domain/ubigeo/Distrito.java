@@ -62,4 +62,11 @@ public class Distrito implements Serializable {
         this.coDepartamento = coDepartamento;
     }
 
+	@Override
+	public String toString() {
+		return noDistrito;
+	}
+
+    
+
 }

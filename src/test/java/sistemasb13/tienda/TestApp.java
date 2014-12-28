@@ -33,11 +33,19 @@ public class TestApp {
       
     }
 
-    @Test
-    @Transactional
+//    @Test
+//    @Transactional
     public void testFind()
     {
     	assertEquals(25,ubigeoService.getAllDepartments().size());
+    	
+    }
+    
+    @Test
+    @Transactional
+    public void testFind2()
+    {
+    	assertEquals(7,ubigeoService.getProvinciasByIdDepartment("01").size());
     	
     }
 }

@@ -41,4 +41,12 @@ public class Departamento implements Serializable{
     public void setNoDepartamento(String noDepartamento) {
         this.noDepartamento = noDepartamento;
     }
+
+	@Override
+	public String toString() {
+		return noDepartamento;
+	}
+    
+    
+    
 }

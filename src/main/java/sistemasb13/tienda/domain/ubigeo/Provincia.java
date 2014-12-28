@@ -52,4 +52,10 @@ public class Provincia implements Serializable{
         this.coDepartamento = coDepartamento;
     }
     
+
+	@Override
+	public String toString() {
+		return noProvincia;
+	}
+    
 }

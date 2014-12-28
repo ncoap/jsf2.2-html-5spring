@@ -12,5 +12,20 @@
 		NO_DEPARTAMENTO as noDepartamento  
 		FROM DEPARTAMENTO;
 	</select>
+	
+	<select id="getProvinciasByIdDepartment" resultType="Provincia" parameterType="String">
+		SELECT 
+		CO_PROVINCIA as coProvincia, 
+		CO_DEPARTAMENTO as coDepartamento,
+		NO_PROVINCIA as noProvincia  
+		FROM PROVINCIA WHERE CO_DEPARTAMENTO = #{coDepartamento} ;
+	</select>
+	
+<!-- 	<select id="getDistritosByIdProvinciaAndIdDepartment" resultType="Departamento"> -->
+<!-- 		SELECT  -->
+<!-- 		CO_DEPARTAMENTO as coDepartamento,  -->
+<!-- 		NO_DEPARTAMENTO as noDepartamento   -->
+<!-- 		FROM DEPARTAMENTO; -->
+<!-- 	</select> -->
 
 </mapper>

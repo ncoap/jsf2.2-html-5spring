@@ -22,6 +22,8 @@
     <typeAliases>
         <typeAlias type="sistemasb13.tienda.domain.Cliente" alias="Cliente"></typeAlias>
         <typeAlias type="sistemasb13.tienda.domain.ubigeo.Departamento" alias="Departamento"></typeAlias>
+        <typeAlias type="sistemasb13.tienda.domain.ubigeo.Provincia" alias="Provincia"></typeAlias>
+        <typeAlias type="sistemasb13.tienda.domain.ubigeo.Distrito" alias="Distrito"></typeAlias>
     </typeAliases>
 
     <mappers>

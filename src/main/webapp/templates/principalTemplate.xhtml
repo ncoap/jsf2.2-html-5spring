@@ -8,9 +8,11 @@
 <f:view contentType="text/html">
 	<h:head>
 		<f:facet name="first">
-			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+		    <meta name="viewport" content="width=device-width, initial-scale=1" />
+			<meta charset="UTF-8" />
 			<title><ui:insert name="title">Aqui va el titulo</ui:insert></title>
 		</f:facet>
+		<link href="../resources/css/main.css" rel="stylesheet" />
 	</h:head>
 
 	<h:body>
@@ -19,14 +21,14 @@
 
 			<p:layoutUnit position="north" size="100" resizable="true"
 				closable="true" collapsible="true">
-                    <ui:insert name="north">Aqui va el cuerpo</ui:insert>
-                </p:layoutUnit>
+				<ui:insert name="north">Aqui va el cuerpo</ui:insert>
+			</p:layoutUnit>
 
 			<p:layoutUnit position="south" size="100" closable="true"
 				collapsible="true">
 				<ui:insert name="south">Aqui va el cuerpo</ui:insert>
-                    
-                </p:layoutUnit>
+
+			</p:layoutUnit>
 
 			<p:layoutUnit position="west" size="175" header="Left"
 				collapsible="true">
