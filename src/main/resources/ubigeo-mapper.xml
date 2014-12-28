@@ -21,11 +21,13 @@
 		FROM PROVINCIA WHERE CO_DEPARTAMENTO = #{coDepartamento} ;
 	</select>
 	
-<!-- 	<select id="getDistritosByIdProvinciaAndIdDepartment" resultType="Departamento"> -->
-<!-- 		SELECT  -->
-<!-- 		CO_DEPARTAMENTO as coDepartamento,  -->
-<!-- 		NO_DEPARTAMENTO as noDepartamento   -->
-<!-- 		FROM DEPARTAMENTO; -->
-<!-- 	</select> -->
+	<select id="getDistritosByIdProvinciaAndIdDepartment" resultType="Distrito" parameterType="java.util.Map">
+		SELECT 
+		CO_DISTRITO as coDistrito,
+		CO_PROVINCIA as coProvincia,
+		CO_DEPARTAMENTO as coDepartamento, 
+		NO_DISTRITO as noDistrito  
+		FROM DISTRITO WHERE CO_PROVINCIA = #{coProvincia} AND CO_DEPARTAMENTO = #{coDepartamento} ;
+	</select>
 
 </mapper>

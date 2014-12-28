@@ -21,21 +21,48 @@
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
 				<p:outputLabel for="idDepartamento" value="Departamento:" />
-
-				<p:selectOneMenu id="idDepartamento" value="#{ubigeoBean.departamento.coDepartamento}" required="true">
-					<p:ajax listener="#{ubigeoBean.getProvinciasByIdDepartment}" update="idProvincia"/>
-					<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-" noSelectionOption="true" />
+				<p:selectOneMenu id="idDepartamento"
+					value="#{ubigeoBean.departamento.coDepartamento}" required="true">
+					
+					<p:ajax listener="#{ubigeoBean.getProvinciasByIdDepartment}"
+						update="idProvincia idDistrito" />
+						
+					<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-"
+						noSelectionOption="true" />
+						
 					<f:selectItems value="#{ubigeoBean.departamentos}"
 						var="departamento" itemValue="#{departamento.coDepartamento}"
-						itemLabel="#{departamento.noDepartamento}">
-					</f:selectItems>
+						itemLabel="#{departamento.noDepartamento}"/>
 
 				</p:selectOneMenu>
 
 				<p:outputLabel for="idProvincia" value="Provincia" />
-				<p:selectOneMenu id="idProvincia">
-					<f:selectItems value="#{ubigeoBean.provincias}" />
+				<p:selectOneMenu id="idProvincia"
+					value="#{ubigeoBean.provincia.coProvincia}" required="true">
+					
+					<p:ajax listener="#{ubigeoBean.getDistritosByIdProvinciaAndIdDepartment}"
+						update="idDistrito" />
+					
+					<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-"
+						noSelectionOption="true" />
+					<f:selectItems value="#{ubigeoBean.provincias}" var="provincia"
+					itemLabel="#{provincia.noProvincia}" itemValue="#{provincia.coProvincia}"/>
+				
 				</p:selectOneMenu>
+
+				<p:outputLabel for="idDistrito" value="Distrito" />
+				<p:selectOneMenu id="idDistrito"
+					value="#{ubigeoBean.distrito.coDistrito}" required="true">
+					
+					<f:selectItem itemValue="-1" itemLabel="-SELECCIONAR-"
+						noSelectionOption="true" />
+						
+					<f:selectItems value="#{ubigeoBean.distritos}"  var="distrito"
+					itemLabel="#{distrito.noDistrito}" itemValue="#{distrito.coDistrito}"/>
+					
+				</p:selectOneMenu>
+				
+				<p:commandButton value="Registrar Ubigeo"/>
 
 			</h:panelGrid>
 

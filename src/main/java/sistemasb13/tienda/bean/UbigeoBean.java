@@ -60,11 +60,18 @@ public class UbigeoBean implements Serializable {
 
 	public void getProvinciasByIdDepartment() {
 
-		log.debug("Evento al fin");
-		provincias = null;
+		log.debug("Cambiando Provincias");
+		distritos = null;
 		provincias = ubigeoService.getProvinciasByIdDepartment(departamento.getCoDepartamento());
 
 	}
+	
+	
+	public void getDistritosByIdProvinciaAndIdDepartment(){
+		log.debug("Cambiando Distritos");
+		distritos = ubigeoService.getDistritosByIdProvinciaAndIdDepartment(provincia.getCoProvincia(), departamento.getCoDepartamento()); 
+	}
+	
 
 	public Departamento getDepartamento() {
 		return departamento;
