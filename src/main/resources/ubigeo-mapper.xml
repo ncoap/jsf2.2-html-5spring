@@ -8,7 +8,8 @@
 
 	<select id="getAllDepartments" resultType="Departamento">
 		SELECT 
-		CO_DEPARTAMENTO,NO_DEPARTAMENTO
+		CO_DEPARTAMENTO as coDepartamento, 
+		NO_DEPARTAMENTO as noDepartamento  
 		FROM DEPARTAMENTO;
 	</select>
 

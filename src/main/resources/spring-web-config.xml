@@ -13,6 +13,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="sistemasb13.tienda.services" />
 	<context:component-scan base-package="sistemasb13.tienda.daoibatis" />
+	<context:component-scan base-package="sistemasb13.tienda.bean" />
 	<context:component-scan base-package="sistemasb13.tienda.dao" />
 
 	<mybatis-spring:scan base-package="sistemasb13.tienda.daoibatis" />

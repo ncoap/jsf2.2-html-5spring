@@ -1,7 +1,10 @@
 package sistemasb13.tienda.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.event.ActionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,8 +17,9 @@ import sistemasb13.tienda.services.UbigeoService;
 
 @Component
 @Scope("session")
-public class UbigeoBean {
+public class UbigeoBean implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private Departamento departamento;
 	private Provincia provincia;
 	private Distrito distrito;
@@ -40,30 +44,13 @@ public class UbigeoBean {
 	}
 	
 	
-	public void getAllDepartments(){
+	public void getAllDepartments(ActionEvent evt){
 		
 		departamentos = ubigeoService.getAllDepartments();
+		System.out.println(departamentos);
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 
 	public Departamento getDepartamento() {
 		return departamento;

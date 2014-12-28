@@ -6,13 +6,17 @@
 
 package sistemasb13.tienda.domain.ubigeo;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author Nelson
  */
-public class Provincia{
-    private String coProvincia;
+public class Provincia implements Serializable{
+ 
+	private static final long serialVersionUID = 1L;
+	private String coProvincia;
     private String coDepartamento;
     private String noProvincia;
 

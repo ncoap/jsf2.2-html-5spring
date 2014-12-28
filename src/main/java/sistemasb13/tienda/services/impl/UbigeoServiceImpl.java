@@ -1,5 +1,6 @@
 package sistemasb13.tienda.services.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import sistemasb13.tienda.domain.ubigeo.Departamento;
 import sistemasb13.tienda.services.UbigeoService;
 
 @Service
-public class UbigeoServiceImpl implements UbigeoService {
+public class UbigeoServiceImpl implements UbigeoService,Serializable {
 
+	
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IUbigeo ubigeoDao;
 	

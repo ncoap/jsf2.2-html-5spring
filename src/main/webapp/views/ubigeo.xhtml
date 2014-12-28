@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/principalTemplate.xhtml">
+
+	<ui:define name="title">List Cliente Prime</ui:define>
+
+	<ui:define name="north">
+		<p:outputLabel
+			value="Bienvenido Usuario: #{usuarioBean.usuario.deLogin}"></p:outputLabel>
+	</ui:define>
+
+
+	<ui:define name="center">
+	
+	    <h:form>
+			<p:commandButton value="OOO" actionListener="#{ubigeoBean.getAllDepartments}" 
+			update=":idFrmUbigeo:idDepartamento"></p:commandButton>
+			
+		</h:form>
+		
+		<h:form id="idFrmUbigeo">
+			<p:messages id="idMessages" />
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<p:outputLabel for="idDepartamento" value="Departamento:" />
+				<p:selectOneMenu id="idDepartamento">
+					<f:selectItems value="#{ubigeoBean.departamentos}" var="departamento"
+					itemValue="#{departamento.coDepartamento}" itemLabel="#{departamento.noDepartamento}"/>
+				</p:selectOneMenu>
+
+			</h:panelGrid>
+			
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="south">
+
+	</ui:define>
+
+
+</ui:composition>

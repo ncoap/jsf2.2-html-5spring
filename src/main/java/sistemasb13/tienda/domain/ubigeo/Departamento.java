@@ -6,13 +6,17 @@
 
 package sistemasb13.tienda.domain.ubigeo;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author nelson
  */
-public class Departamento {
-    private String coDepartamento;    
+public class Departamento implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private String coDepartamento;    
     private String noDepartamento;
 
     public Departamento() {
